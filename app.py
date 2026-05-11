@@ -1,3 +1,4 @@
+import plotly.express as px
 import streamlit as st
 import pandas as pd
 import joblib
@@ -70,3 +71,20 @@ if st.button("Calcular previsão"):
     st.caption(
         "Nota: esta previsão deve ser interpretada como estimativa analítica."
     )
+
+# gráfico ilustrativo simples
+
+grafico_df = pd.DataFrame({
+    "Euribor": [1, 2, 3, 4, 5],
+    "Preço Previsto": [3100, 3000, 2870, 2800, 2700]
+})
+
+fig = px.line(
+    grafico_df,
+    x="Euribor",
+    y="Preço Previsto",
+    markers=True,
+    title="Impacto da Euribor no preço estimado"
+)
+
+st.plotly_chart(fig, use_container_width=True)
