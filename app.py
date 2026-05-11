@@ -84,7 +84,7 @@ for euribor_simulado in euribor_range:
     entrada_simulada["euribor_12m"] = euribor_simulado
 
     preco_base = modelo.predict(entrada)[0]
-preco_simulado = preco_base - (euribor_simulado * 40)
+    preco_simulado = preco_base - (euribor_simulado * 40)
 
     previsoes_grafico.append(preco_simulado)
 
