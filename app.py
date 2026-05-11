@@ -79,12 +79,15 @@ grafico_df = pd.DataFrame({
     "Preço Previsto": [3100, 3000, 2870, 2800, 2700]
 })
 
+st.markdown("---")
+
 fig = px.line(
     grafico_df,
     x="Euribor",
     y="Preço Previsto",
     markers=True,
-    title="Impacto da Euribor no preço estimado"
+    title="Simulação ilustrativa da relação entre Euribor e preço estimado"
+)
 )
 
 st.plotly_chart(fig, use_container_width=True)
