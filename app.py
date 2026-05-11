@@ -69,10 +69,8 @@ if st.button("Calcular previsão"):
     st.metric("Preço previsto", f"{previsao:.2f} €/m²")
 
     st.caption(
-        "Nota: esta previsão deve ser interpretada como estimativa analítica."
-    )
-
-# gráfico ilustrativo simples
+    "Nota: esta previsão deve ser interpretada como estimativa analítica baseada nas variáveis utilizadas no modelo."
+)
 
 grafico_df = pd.DataFrame({
     "Euribor": [1, 2, 3, 4, 5],
