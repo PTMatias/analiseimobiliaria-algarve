@@ -72,20 +72,32 @@ if st.button("Calcular previsão"):
     "Nota: esta previsão deve ser interpretada como estimativa analítica baseada nas variáveis utilizadas no modelo."
 )
 
-grafico_df = pd.DataFrame({
-    "Euribor": [1, 2, 3, 4, 5],
-    "Preço Previsto": [3100, 3000, 2870, 2800, 2700]
-})
+# gráfico dinâmico — simulação da Euribor com o modelo treinado
 
 st.markdown("---")
 
+euribor_range = [1, 2, 3, 4, 5]
+previsoes_grafico = []
+
+for euribor_simulado in euribor_range:
+    entrada_simulada = entrada.copy()
+    entrada_simulada["euribor_12m"] = euribor_simulado
+
+    preco_simulado = modelo.predict(entrada_simulada)[0]
+
+    previsoes_grafico.append(preco_simulado)
+
+grafico_df = pd.DataFrame({
+    "Euribor a 12 meses (%)": euribor_range,
+    "Preço previsto (€ / m²)": previsoes_grafico
+})
+
 fig = px.line(
     grafico_df,
-    x="Euribor",
-    y="Preço Previsto",
+    x="Euribor a 12 meses (%)",
+    y="Preço previsto (€ / m²)",
     markers=True,
-    title="Simulação ilustrativa da relação entre Euribor e preço estimado"
+    title="Simulação dinâmica da relação entre Euribor e preço estimado"
 )
-
 
 st.plotly_chart(fig, use_container_width=True)
