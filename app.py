@@ -72,7 +72,7 @@ if st.button("Calcular previsão"):
     "Nota: esta previsão deve ser interpretada como estimativa analítica baseada nas variáveis utilizadas no modelo."
 )
 
-# gráfico dinâmico — simulação da Euribor com o modelo treinado
+# gráfico dinâmico – sensibilidade da Euribor
 
 st.markdown("---")
 
