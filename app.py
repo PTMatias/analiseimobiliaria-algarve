@@ -83,7 +83,8 @@ for euribor_simulado in euribor_range:
     entrada_simulada = entrada.copy()
     entrada_simulada["euribor_12m"] = euribor_simulado
 
-    preco_simulado = modelo.predict(entrada_simulada)[0]
+    preco_base = modelo.predict(entrada)[0]
+preco_simulado = preco_base - (euribor_simulado * 40)
 
     previsoes_grafico.append(preco_simulado)
 
@@ -97,7 +98,7 @@ fig = px.line(
     x="Euribor a 12 meses (%)",
     y="Preço previsto (€ / m²)",
     markers=True,
-    title="Simulação dinâmica da relação entre Euribor e preço estimado"
-)
+    title="Simulação ilustrativa da sensibilidade do preço à Euribor"
+) 
 
 st.plotly_chart(fig, use_container_width=True)
