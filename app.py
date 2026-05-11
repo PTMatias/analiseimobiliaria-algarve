@@ -72,39 +72,3 @@ if st.button("Calcular previsão"):
     "Nota: esta previsão deve ser interpretada como estimativa analítica baseada nas variáveis utilizadas no modelo."
 )
 
-# gráfico dinâmico – sensibilidade da Euribor
-
-st.markdown("---")
-
-euribor_range = [
-    euribor - 1,
-    euribor - 0.5,
-    euribor,
-    euribor + 0.5,
-    euribor + 1
-]
-previsoes_grafico = []
-
-for euribor_simulado in euribor_range:
-    entrada_simulada = entrada.copy()
-    entrada_simulada["euribor_12m"] = euribor_simulado
-
-    preco_base = modelo.predict(entrada)[0]
-    preco_simulado = preco_base - (euribor_simulado * 40)
-
-    previsoes_grafico.append(preco_simulado)
-
-grafico_df = pd.DataFrame({
-    "Euribor a 12 meses (%)": euribor_range,
-    "Preço previsto (€ / m²)": previsoes_grafico
-})
-
-fig = px.line(
-    grafico_df,
-    x="Euribor a 12 meses (%)",
-    y="Preço previsto (€ / m²)",
-    markers=True,
-    title="Simulação ilustrativa da sensibilidade do preço à Euribor"
-) 
-
-st.plotly_chart(fig, use_container_width=True)
