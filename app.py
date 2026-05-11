@@ -76,7 +76,13 @@ if st.button("Calcular previsão"):
 
 st.markdown("---")
 
-euribor_range = [1, 2, 3, 4, 5]
+euribor_range = [
+    euribor - 1,
+    euribor - 0.5,
+    euribor,
+    euribor + 0.5,
+    euribor + 1
+]
 previsoes_grafico = []
 
 for euribor_simulado in euribor_range:
