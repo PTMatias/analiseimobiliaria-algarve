@@ -88,6 +88,6 @@ fig = px.line(
     markers=True,
     title="Simulação ilustrativa da relação entre Euribor e preço estimado"
 )
-)
+
 
 st.plotly_chart(fig, use_container_width=True)
